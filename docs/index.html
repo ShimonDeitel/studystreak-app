@@ -24,9 +24,33 @@
   .feature p { margin: 0; color: #b8bec9; font-size: 0.95rem; }
   footer { margin-top: 2.5em; font-size: 0.85rem; color: #7d838f; }
   a { color: #FF7A45; }
+
+  @keyframes floatOrb {
+    0%, 100% { transform: translate(0,0) scale(1); }
+    50% { transform: translate(30px,-40px) scale(1.08); }
+  }
+  @keyframes fadeUp {
+    from { opacity:0; transform: translateY(16px); }
+    to { opacity:1; transform: translateY(0); }
+  }
+  .orb {
+    position: fixed; top: -120px; right: -120px; width: 420px; height: 420px;
+    background: radial-gradient(circle, #FF7A4555 0%, #FF7A4500 70%);
+    filter: blur(10px); pointer-events: none; z-index: 0;
+    animation: floatOrb 9s ease-in-out infinite;
+  }
+  .wrap { position: relative; z-index: 1; }
+  h1 { animation: fadeUp 0.8s ease-out both; }
+  p.tagline { animation: fadeUp 0.8s ease-out 0.15s both; }
+  .feature { animation: fadeUp 0.8s ease-out both; transition: transform 0.25s ease; }
+  .feature:nth-of-type(1) { animation-delay: 0.3s; }
+  .feature:nth-of-type(2) { animation-delay: 0.45s; }
+  .feature:hover { transform: translateY(-3px); }
+  footer { animation: fadeUp 0.8s ease-out 0.6s both; }
 </style>
 </head>
 <body>
+<div class="orb"></div>
 <div class="wrap">
   <h1>Studystreak</h1>
   <p class="tagline">Log a daily study check-in and build a visible streak.</p>
